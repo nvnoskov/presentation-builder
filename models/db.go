@@ -1,6 +1,8 @@
 package models
 
 import (
+	"os"
+
 	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -16,9 +18,9 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS presentations (	
     slug text,
 	file text,
-	author text NOT NULL,
-    name text NOT NULL,
-    description text NOT NULL,
+	author text,
+    name text,
+    description text,
 	json text,
 	draft int DEFAULT 1, 
 	pages int DEFAULT 0,
@@ -27,6 +29,10 @@ CREATE TABLE IF NOT EXISTS presentations (
 
 func checkSchema() {
 	DB.MustExec(schema)
+
+	if _, err := os.Stat("static/presentation"); os.IsNotExist(err) {
+		os.Mkdir("static/presentation", 0755)
+	}
 }
 
 func Connect() {

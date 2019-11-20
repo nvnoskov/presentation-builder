@@ -43,10 +43,12 @@ func Preview(slug string, presentation models.Presentation, buffer *bytes.Buffer
         }
     </style>
     <nav class="navbar fixed-bottom navbar-light bg-light">
+        <div class="btn-group">
             <button class="btn btn-danger" id="record">Record</button>
             <button class="btn btn-info" id="stop" disabled>Stop</button>
             <button class="btn btn-info" id="play" disabled>Play</button>
             <button class="btn btn-primary" id="save" disabled>Save</button>
+        </div>
     </nav>
     <div class="reveal">
         <div class="slides">

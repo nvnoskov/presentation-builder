@@ -16,6 +16,7 @@ import (
 //var ok bool
 
 func isError(errors url.Values, key string) string {
+	fmt.Printf("%+v %s \n", errors, key)
 	if _, ok := errors[key]; ok {
 		return "is-invalid"
 	}
@@ -113,7 +114,7 @@ func Edit(errors url.Values, presentation models.Presentation, buffer *bytes.Buf
         <label for="description" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-10">
         <textarea class="form-control `)
-	hero.EscapeHTML(isError(errors, "author"), buffer)
+	hero.EscapeHTML(isError(errors, "description"), buffer)
 	buffer.WriteString(`" id="description" rows="3" name="description">`)
 	hero.EscapeHTML(fmt.Sprintf("%v", presentation.Description), buffer)
 	buffer.WriteString(`</textarea>

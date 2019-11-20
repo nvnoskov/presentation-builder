@@ -22,7 +22,7 @@ import (
 )
 
 func init() {
-	logger.SetLevel(logger.DEBUG)
+	logger.SetLevel(logger.ERROR)
 }
 
 func main() {
@@ -133,7 +133,7 @@ func main() {
 
 		shortHash := hash[:8]
 		var count int
-		err = models.DB.Get(&count, "SELECT COUNT(file) FROM presentations WHERE file=$1", shortHash)
+		err = models.DB.Get(&count, "SELECT COUNT(file) FROM presentations WHERE file=$1 AND slug = $2", shortHash, user.Slug)
 		if err != nil {
 			logger.Error(err)
 		}
@@ -307,7 +307,7 @@ func editPresentation(ctx *atreugo.RequestCtx) error {
 			RequiredDefault: true,     // all the field to be pass the rules
 		}
 		v := govalidator.New(opts)
-		e := v.ValidateStruct()
+		e = v.ValidateStruct()
 
 		if len(e) == 0 {
 			// Save presentation record

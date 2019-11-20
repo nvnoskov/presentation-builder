@@ -3,7 +3,7 @@ console.log(Reveal.getSlides())
 
 
 Reveal.addKeyBinding({ keyCode: 84, key: 'T', description: 'Start timer' }, function () {
-    console.log("startTOe,asd")
+    console.log("Start recording")
 })
 
 const recordAudio = () =>
@@ -75,7 +75,8 @@ saveButton.addEventListener('click', () => {
             })
         }).then(res => {
             if (res.status === 201) {
-                return populateAudioMessages();
+                Reveal.getCurrentSlide().innerHTML = '<audio controls="controls" src="/static/presentation/'+window.currentSlug+'/'+window.currentUrl+'/page-'+Reveal.getIndices().h.toString().padStart(2, '0')+'.wav" type="audio/wav">';
+                // return populateAudioMessages();
             }
             console.log('Invalid status saving audio message: ' + res.status);
         });
