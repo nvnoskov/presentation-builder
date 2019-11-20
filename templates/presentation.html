@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+    <img src="/static/presentation/<%= slug%>/<%= presentation.File %>/page-00.jpg" class="card-img-top" alt="<%= presentation.Name %>">
+    <div class="card-body">
+        <h5 class="card-title"><%= presentation.Name %></h5>
+        <p class="card-text"><%= presentation.Description %></p>
+        <a href="/edit/<%= presentation.File %>" class="btn btn-primary">Edit</a>
+        <a href="/preview/<%= presentation.File %>" class="btn btn-success">Preview</a>
+        <a href="/delete/<%= presentation.File %>" class="btn btn-light">Remove</a>
+    </div>
+    </div>

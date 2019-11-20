@@ -1,0 +1,66 @@
+<%! 
+import (
+    "nvnoskov/presentation-builder/models" 
+    "net/url"
+
+)
+//var val interface{}
+//var ok bool
+
+func isError(errors url.Values,key string) string {
+    if _, ok := errors[key]; ok {  
+        return "is-invalid"
+    }
+    return ""
+}
+%>
+<%: func Edit(errors url.Values, presentation models.Presentation, buffer *bytes.Buffer) %>
+
+<%~ "index.html" %>
+
+<%@ body { %>
+<form  method="POST" enctype="application/x-www-form-urlencoded">
+    <h1 class="h3 mb-3 font-weight-normal">Add information about your presentation</h1>
+    
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control <%=s isError(errors, "name")%>" id="name" name="name" value="<%= presentation.Name%>">
+            <% if val, ok := errors["name"]; ok {            
+            %>
+            <div class="invalid-feedback">
+                <%=v val[0]%>
+            </div>
+            <% } %>
+        </div>
+       
+        
+    </div>
+    <div class="form-group row">
+        <label for="author" class="col-sm-2 col-form-label">Author</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control <%=s isError(errors, "author")%>" id="author" placeholder="Author" name="author" value="<%=v presentation.Author%>">
+            <% if val, ok := errors["author"]; ok {            
+                %>
+                <div class="invalid-feedback">
+                    <%=v val[0]%>
+                </div>
+                <% } %>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+        <textarea class="form-control <%=s isError(errors, "author")%>" id="description" rows="3" name="description"><%=v presentation.Description%></textarea>
+        <% if val, ok := errors["description"]; ok {            
+            %>
+            <div class="invalid-feedback">
+                <%=v val[0]%>
+            </div>
+            <% } %>
+    </div>
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit">Save</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+</form>
+<% } %>

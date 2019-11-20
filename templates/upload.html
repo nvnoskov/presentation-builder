@@ -1,0 +1,14 @@
+
+<%: func Upload(buffer *bytes.Buffer) %>
+
+<%~ "index.html" %>
+
+<%@ body { %>
+    <form class="form-signin" method="POST" enctype=multipart/form-data>       
+        <h1 class="h3 mb-3 font-weight-normal">Upload PDF</h1>
+        <label for="inputEmail" class="sr-only">PDF file</label>
+        <input type="file" id="file" name="file" class="form-control" placeholder="PDF file" required autofocus accept="application/pdf">        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+    </form>
+<% } %>

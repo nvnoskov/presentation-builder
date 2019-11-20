@@ -1,0 +1,29 @@
+<%! 
+import "nvnoskov/presentation-builder/models" 
+%>
+
+<%: func Presentations(slug string, presentations []models.Presentation, buffer *bytes.Buffer) %>
+
+<%~ "index.html" %>
+
+<%@ body { %>
+    <style>
+        .col{
+            margin-bottom:10px;
+        }
+    </style>
+    <div class="jumbotron">
+            <h1>Presentations</h1>
+            <div class="row align-items-center">
+            <% for _, presentation := range presentations { %>
+                <div class="col">
+                    <%+ "presentation.html" %>
+                </div>
+            <% } %>
+            </div>
+            <br>
+            <a href="/upload" class="btn btn-block btn-primary btn-lg">Upload</a>
+          </div>
+
+    
+<% } %>
