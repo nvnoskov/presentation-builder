@@ -41,11 +41,7 @@ func main() {
 
 	// Register index route
 	server.Path("GET", "/", func(ctx *atreugo.RequestCtx) error {
-
-		buffer := new(bytes.Buffer)
-		template.Main(buffer)
-
-		return ctx.HTTPResponseBytes(buffer.Bytes())
+		return ctx.RedirectResponse("/presentations", ctx.Response.StatusCode())
 	})
 
 	// Register login route
@@ -171,8 +167,8 @@ func main() {
 			f.Close()
 		}
 
-		_, err = models.DB.Exec(`INSERT INTO presentations(file,slug,draft,pages) 
-			SELECT $1, $2, 0, $3 
+		_, err = models.DB.Exec(`INSERT INTO presentations(file,slug,draft,pages, author, name, description) 
+			SELECT $1, $2, 0, $3, "", "" , ""
 			WHERE NOT EXISTS(SELECT 1 FROM presentations WHERE file = $1 AND slug = $2);`, hash[:8], user.Slug, doc.NumPage())
 		if err != nil {
 			logger.Error(err)
