@@ -12,5 +12,6 @@ require (
 	github.com/savsgio/go-logger v1.0.0
 	github.com/shiyanhui/hero v0.0.2
 	github.com/thedevsaddam/govalidator v1.9.8
-	github.com/valyala/fasthttp v1.6.0
+	github.com/valyala/fasthttp v1.34.0
+	google.golang.org/appengine v1.6.7 // indirect
 )
